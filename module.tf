@@ -40,16 +40,16 @@ module "sg" {
 }
 
 module "ecs" {
-  source = ".//ecs"
-  repository_name = "terraform"
-  vpc_id = module.vpc.id
-  cluster_name = "terraform_cluster"
-  container_name = "terraform_container"
-  launch_type = "FARGATE"
-  security_groups = [module.sg.id]
-  task_cpu = "512"
-  task_memory = "1024"
+  source           = "github.com/Dudochnik/SoftServeDevOpsPetProjectModules//ecs"
+  repository_name  = "terraform"
+  vpc_id           = module.vpc.id
+  cluster_name     = "terraform_cluster"
+  container_name   = "terraform_container"
+  launch_type      = "FARGATE"
+  security_groups  = [module.sg.id]
+  task_cpu         = "512"
+  task_memory      = "1024"
   task_family_name = "terraform_task_family"
-  service_name = "terraform_service"
-  subnets = [module.public_subnet_a.id]
+  service_name     = "terraform_service"
+  subnets          = [module.public_subnet_a.id]
 }
