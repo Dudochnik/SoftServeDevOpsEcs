@@ -2,6 +2,14 @@ provider "aws" {
   region = "us-west-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "testbucketovasyle"
+    key    = "tfstate"
+    region = "us-west-2"
+  }
+}
+
 module "vpc" {
   source = "github.com/Dudochnik/SoftServeDevOpsPetProjectModules//vpc"
   name   = "Practice VPC"
@@ -41,7 +49,6 @@ module "sg" {
 
 module "ecs" {
   source           = "github.com/Dudochnik/SoftServeDevOpsPetProjectModules//ecs"
-  count = 0
   repository_name  = "terraform"
   vpc_id           = module.vpc.id
   cluster_name     = "terraform_cluster"
