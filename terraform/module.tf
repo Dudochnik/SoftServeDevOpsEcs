@@ -41,6 +41,7 @@ module "sg" {
 
 module "ecs" {
   source           = "github.com/Dudochnik/SoftServeDevOpsPetProjectModules//ecs"
+  count = 0
   repository_name  = "terraform"
   vpc_id           = module.vpc.id
   cluster_name     = "terraform_cluster"
